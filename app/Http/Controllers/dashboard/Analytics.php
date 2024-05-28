@@ -2,13 +2,19 @@
 
 namespace App\Http\Controllers\dashboard;
 
-use App\Http\Controllers\Controller;
+use App\Models\Book;
+use App\Models\Rent;
+use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class Analytics extends Controller
 {
   public function index()
   {
-    return view('content.dashboard.dashboards-analytics');
+    $userCount = User::count();
+    $bookCount = Book::count();
+    $rentCount = Rent::count();
+    return view('content.dashboard.dashboards-analytics', compact('userCount', 'bookCount', 'rentCount'));
   }
 }
